@@ -1,7 +1,7 @@
 import Foundation
 import CryptoSwift
 
-public struct SeedDerivator: SeedProviding {
+public struct SeedDerivator: SeedDerivating {
     private static let saltConstant = "mnemonic"
     private static let iterations = 2048
     private static let keyLength = 64

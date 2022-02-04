@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol SeedProviding {
+public protocol SeedDerivating {
     func seed(password: String, passphrase: String) throws -> Data
 }
