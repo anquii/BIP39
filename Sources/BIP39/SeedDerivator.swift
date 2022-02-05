@@ -1,12 +1,17 @@
 import Foundation
 import CryptoSwift
 
-public struct SeedDerivator: SeedDerivating {
+public struct SeedDerivator {
     private static let saltConstant = "mnemonic"
     private static let iterations = 2048
     private static let keyLength = 64
     private static let variant = HMAC.Variant.sha2(.sha512)
 
+    public init() {}
+}
+
+// MARK: - SeedDerivating
+extension SeedDerivator: SeedDerivating {
     public func seed(mnemonic: String, passphrase: String = "") throws -> Data {
         do {
             let keyDerivation = try PKCS5.PBKDF2(
