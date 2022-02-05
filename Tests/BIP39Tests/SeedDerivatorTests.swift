@@ -1,8 +1,6 @@
 import XCTest
 @testable import BIP39
 
-import Foundation
-
 final class SeedDerivatorTests: XCTestCase {
     private var testVectors: [TestVector]!
 
