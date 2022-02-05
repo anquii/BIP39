@@ -1,7 +1,7 @@
 import CryptoSwift
 
-extension SeedDerivationError {
-    init(error: PKCS5.PBKDF2.Error) {
+extension SeedDerivatorError {
+    init(_ error: PKCS5.PBKDF2.Error) {
         switch error {
         case .invalidInput:
             self = .invalidInput

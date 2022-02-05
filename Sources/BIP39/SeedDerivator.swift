@@ -20,7 +20,7 @@ public struct SeedDerivator: SeedDerivating {
                 try keyDerivation.calculate()
             )
         } catch let error as PKCS5.PBKDF2.Error {
-            throw SeedDerivationError(error: error)
+            throw SeedDerivatorError(error)
         }
     }
 }
