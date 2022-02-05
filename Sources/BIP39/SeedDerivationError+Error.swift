@@ -7,6 +7,8 @@ extension SeedDerivationError {
             self = .invalidInput
         case .derivedKeyTooLong:
             self = .derivedKeyTooLong
+        @unknown default:
+            self = .unknown
         }
     }
 }

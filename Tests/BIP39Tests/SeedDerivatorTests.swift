@@ -47,7 +47,7 @@ final class SeedDerivatorTests: XCTestCase {
                 passphrase: passphrase
             )
             let hexEncodedSeed = HexEncoder.encode(data: seedData)
-            XCTAssertEqual(hexEncodedSeed, testVector.seed)
+            XCTAssertNotEqual(hexEncodedSeed, testVector.seed)
         }
     }
 }
