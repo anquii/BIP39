@@ -1,7 +1,7 @@
 /// https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt
 
-struct EnglishWordListProvider: WordListProviding {
-    let wordList = [
+public struct EnglishWordListProvider: WordListProviding {
+    public let wordList = [
         "abandon",
         "ability",
         "able",
