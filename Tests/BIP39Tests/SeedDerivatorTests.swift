@@ -32,8 +32,10 @@ final class SeedDerivatorTests: XCTestCase {
                 mnemonic: testVector.mnemonic,
                 passphrase: passphrase
             )
-            let hexEncodedSeed = HexEncoder.encode(data: seedData)
-            XCTAssertEqual(hexEncodedSeed, testVector.seed)
+            XCTAssertEqual(
+                seedData,
+                Data(hex: testVector.hexEncodedSeed)
+            )
         }
     }
 
@@ -46,8 +48,10 @@ final class SeedDerivatorTests: XCTestCase {
                 mnemonic: testVector.mnemonic,
                 passphrase: passphrase
             )
-            let hexEncodedSeed = HexEncoder.encode(data: seedData)
-            XCTAssertNotEqual(hexEncodedSeed, testVector.seed)
+            XCTAssertNotEqual(
+                seedData,
+                Data(hex: testVector.hexEncodedSeed)
+            )
         }
     }
 }
