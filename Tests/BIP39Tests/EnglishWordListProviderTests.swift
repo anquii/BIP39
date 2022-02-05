@@ -1,8 +1,8 @@
 import XCTest
 @testable import BIP39
 
-final class EnglishWordListTests: XCTestCase {
-    private func sut() -> EnglishWordList {
+final class EnglishWordListProviderTests: XCTestCase {
+    private func sut() -> EnglishWordListProvider {
         .init()
     }
 
