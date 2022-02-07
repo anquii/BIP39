@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol MnemonicConstructing {
-    func mnemonic(entropy: Data) -> String
+    func mnemonic(entropy: Data, wordList: [String]) -> String
 }
 
 public struct MnemonicConstructor {
@@ -9,16 +9,12 @@ public struct MnemonicConstructor {
     private static let entropyEncodingMultipleInBits = 32
     private static let bitSegments = 11
 
-    private let wordListProvider: WordListProviding
-
-    public init(wordListProvider: WordListProviding) {
-        self.wordListProvider = wordListProvider
-    }
+    public init() {}
 }
 
 // MARK: - MnemonicConstructing
 extension MnemonicConstructor: MnemonicConstructing {
-    public func mnemonic(entropy: Data) -> String {
+    public func mnemonic(entropy: Data, wordList: [String]) -> String {
         let hexEncodedPrefix = String(repeating: "0", count: Self.bitsInByte)
         let entropyBits = entropy.flatMap { (hexEncodedPrefix + String($0, radix: 2)).suffix(Self.bitsInByte) }
         let hashBits = entropy.sha256().flatMap { (hexEncodedPrefix + String($0, radix: 2)).suffix(Self.bitsInByte) }
@@ -29,8 +25,6 @@ extension MnemonicConstructor: MnemonicConstructing {
         let concatenatedBits = entropyBits + checksumBits
 
         var words = [String]()
-        let wordList = wordListProvider.wordList
-
         for i in 0..<(concatenatedBits.count / Self.bitSegments) {
             let startIndex = concatenatedBits.index(concatenatedBits.startIndex, offsetBy: i * Self.bitSegments)
             let endIndex = concatenatedBits.index(startIndex, offsetBy: Self.bitSegments)
