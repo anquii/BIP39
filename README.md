@@ -35,3 +35,7 @@ do {
     // Handle error
 }
 ```
+
+## License
+
+This package is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file.
