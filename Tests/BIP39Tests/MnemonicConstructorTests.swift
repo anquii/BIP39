@@ -4,6 +4,11 @@ import XCTest
 final class MnemonicConstructorTests: XCTestCase {
     private let entropyGenerator = EntropyGenerator()
     private let wordListProvider = EnglishWordListProvider()
+    private var testVectors: [TestVector]!
+
+    override func setUpWithError() throws {
+        testVectors = try JSONDecoder().decode([TestVector].self, from: testVectorData)
+    }
 
     private func sut() -> MnemonicConstructor {
         .init()
@@ -37,6 +42,16 @@ final class MnemonicConstructorTests: XCTestCase {
         let entropy = try entropyGenerator.entropy(security: .strongest)
         let mnemonic = sut().mnemonic(entropy: entropy, wordList: wordListProvider.wordList)
         XCTAssertEqual(numberOfWords(mnemonic: mnemonic), 24)
+    }
+
+    func testGivenVectorEntropy_WhenGenerateMnemonic_ThenMnemonicEqualVectorMnemonic() throws {
+        let sut = self.sut()
+
+        for testVector in testVectors {
+            let entropy = Data(hex: testVector.hexEncodedEntropy)
+            let mnemonic = sut.mnemonic(entropy: entropy, wordList: wordListProvider.wordList)
+            XCTAssertEqual(mnemonic, testVector.mnemonic)
+        }
     }
 }
 

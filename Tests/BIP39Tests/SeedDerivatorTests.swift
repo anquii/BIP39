@@ -26,14 +26,8 @@ final class SeedDerivatorTests: XCTestCase {
         let passphrase = "TREZOR"
 
         for testVector in testVectors {
-            let seed = try sut.seed(
-                mnemonic: testVector.mnemonic,
-                passphrase: passphrase
-            )
-            XCTAssertEqual(
-                seed,
-                Data(hex: testVector.hexEncodedSeed)
-            )
+            let seed = try sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
+            XCTAssertEqual(seed, Data(hex: testVector.hexEncodedSeed))
         }
     }
 
@@ -42,14 +36,8 @@ final class SeedDerivatorTests: XCTestCase {
         let passphrase = "INVALID"
 
         for testVector in testVectors {
-            let seed = try sut.seed(
-                mnemonic: testVector.mnemonic,
-                passphrase: passphrase
-            )
-            XCTAssertNotEqual(
-                seed,
-                Data(hex: testVector.hexEncodedSeed)
-            )
+            let seed = try sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
+            XCTAssertNotEqual(seed, Data(hex: testVector.hexEncodedSeed))
         }
     }
 }
