@@ -15,9 +15,9 @@ public struct MnemonicConstructor {
 // MARK: - MnemonicConstructing
 extension MnemonicConstructor: MnemonicConstructing {
     public func mnemonic(entropy: Data, wordList: [String]) -> String {
-        let hexEncodedPrefix = String(repeating: "0", count: Self.bitsInByte)
-        let entropyBits = entropy.flatMap { (hexEncodedPrefix + String($0, radix: 2)).suffix(Self.bitsInByte) }
-        let hashBits = entropy.sha256().flatMap { (hexEncodedPrefix + String($0, radix: 2)).suffix(Self.bitsInByte) }
+        let leadingZeros = String(repeating: "0", count: Self.bitsInByte)
+        let entropyBits = entropy.flatMap { (leadingZeros + String($0, radix: 2)).suffix(Self.bitsInByte) }
+        let hashBits = entropy.sha256().flatMap { (leadingZeros + String($0, radix: 2)).suffix(Self.bitsInByte) }
 
         let entropyLength = entropy.count * Self.bitsInByte
         let checksumLength = entropyLength / Self.entropyEncodingMultipleInBits
