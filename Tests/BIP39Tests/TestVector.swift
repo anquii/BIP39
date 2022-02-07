@@ -1,5 +1,5 @@
 struct TestVector: Decodable {
-    let entropy: String
+    let hexEncodedEntropy: String
     let mnemonic: String
     let hexEncodedSeed: String
 }
