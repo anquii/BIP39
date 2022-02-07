@@ -17,8 +17,8 @@ final class SeedDerivatorTests: XCTestCase {
     }
 
     func testWhenGenerateSeed_AndCountBytes_ThenEqual64() throws {
-        let seedData = try sut().seed(mnemonic: "")
-        XCTAssertEqual(seedData.count, 64)
+        let seed = try sut().seed(mnemonic: "")
+        XCTAssertEqual(seed.count, 64)
     }
 
     func testGivenVectorMnemonic_AndValidPassphrase_WhenGenerateSeed_ThenSeedEqualVectorSeed() throws {
@@ -26,12 +26,12 @@ final class SeedDerivatorTests: XCTestCase {
         let passphrase = "TREZOR"
 
         for testVector in testVectors {
-            let seedData = try sut.seed(
+            let seed = try sut.seed(
                 mnemonic: testVector.mnemonic,
                 passphrase: passphrase
             )
             XCTAssertEqual(
-                seedData,
+                seed,
                 Data(hex: testVector.hexEncodedSeed)
             )
         }
@@ -42,12 +42,12 @@ final class SeedDerivatorTests: XCTestCase {
         let passphrase = "INVALID"
 
         for testVector in testVectors {
-            let seedData = try sut.seed(
+            let seed = try sut.seed(
                 mnemonic: testVector.mnemonic,
                 passphrase: passphrase
             )
             XCTAssertNotEqual(
-                seedData,
+                seed,
                 Data(hex: testVector.hexEncodedSeed)
             )
         }
