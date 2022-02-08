@@ -1,6 +1,10 @@
 import Foundation
 import CryptoSwift
 
+public protocol SeedDerivating {
+    func seed(mnemonic: String, passphrase: String) throws -> Data
+}
+
 public struct SeedDerivator {
     private static let saltConstant = "mnemonic"
     private static let iterations = 2048
