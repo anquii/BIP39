@@ -1,5 +1,3 @@
-/// https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt
-
 public struct EnglishWordListProvider {
     public init() {}
 }
