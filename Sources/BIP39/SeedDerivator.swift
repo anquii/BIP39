@@ -37,10 +37,10 @@ extension SeedDerivator: SeedDerivating {
 // MARK: - Helpers
 fileprivate extension SeedDerivator {
     func password(mnemonic: String) -> Array<UInt8> {
-        mnemonic.utf8.map({ $0 })
+        mnemonic.bytes
     }
 
     func salt(passphrase: String) -> Array<UInt8> {
-        (Self.saltConstant + passphrase).utf8.map({ $0 })
+        (Self.saltConstant + passphrase).bytes
     }
 }
