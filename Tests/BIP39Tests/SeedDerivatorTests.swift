@@ -1,4 +1,5 @@
 import XCTest
+import CryptoSwift
 @testable import BIP39
 
 final class SeedDerivatorTests: XCTestCase {
