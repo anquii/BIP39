@@ -38,4 +38,8 @@ let seed = try seedDerivator.seed(mnemonic: mnemonic, passphrase: "")
 
 ## License
 
-This package is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file.
+BIP39 is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for more information.
+
+## Acknowledgments
+
+In developing BIP39, [KevinVitale](https://github.com/KevinVitale)'s [WalletKit](https://github.com/KevinVitale/WalletKit) has been used as a reference implementation. In addition, BIP39 depends on [krzyzanowskim](https://github.com/krzyzanowskim)'s [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift) for crypto operations.
