@@ -22,7 +22,7 @@ final class SeedDerivatorTests: XCTestCase {
         XCTAssertEqual(seed.count, 64)
     }
 
-    func testGivenVectorMnemonic_AndValidPassphrase_WhenGenerateSeed_ThenSeedEqualVectorSeed() throws {
+    func testGivenVectorMnemonic_AndValidPassphrase_WhenGenerateSeed_ThenEqualVectorSeed() throws {
         let sut = self.sut()
         let passphrase = "TREZOR"
 
@@ -32,7 +32,7 @@ final class SeedDerivatorTests: XCTestCase {
         }
     }
 
-    func testGivenVectorMnemonic_AndInvalidPassphrase_WhenGenerateSeed_ThenSeedNotEqualVectorSeed() throws {
+    func testGivenVectorMnemonic_AndInvalidPassphrase_WhenGenerateSeed_ThenNotEqualVectorSeed() throws {
         let sut = self.sut()
         let passphrase = "INVALID"
 
