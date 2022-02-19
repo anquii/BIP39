@@ -13,7 +13,7 @@ final class SeedDerivatorTests: XCTestCase {
         .init()
     }
 
-    func testGivenVectors_WhenCount_ThenEqual24() throws {
+    func testGivenVectors_WhenCount_ThenEqual24() {
         XCTAssertEqual(testVectors.count, 24)
     }
 

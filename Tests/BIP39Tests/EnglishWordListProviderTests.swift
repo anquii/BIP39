@@ -6,7 +6,7 @@ final class EnglishWordListProviderTests: XCTestCase {
         .init()
     }
 
-    func testGivenEnglishWordList_WhenCountWords_ThenEqual2048() throws {
+    func testGivenEnglishWordList_WhenCountWords_ThenEqual2048() {
         XCTAssertEqual(sut().wordList.count, 2048)
     }
 }
