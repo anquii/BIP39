@@ -27,8 +27,8 @@ import BIP39
 
 let entropyGenerator: EntropyGenerating = EntropyGenerator()
 let entropy = try entropyGenerator.entropy(security: .strongest)
-
 let wordListProvider: WordListProviding = EnglishWordListProvider()
+
 let mnemonicConstructor: MnemonicConstructing = MnemonicConstructor()
 let mnemonic = mnemonicConstructor.mnemonic(entropy: entropy, wordList: wordListProvider.wordList)
 
