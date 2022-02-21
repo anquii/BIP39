@@ -16,7 +16,7 @@ An implementation of [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-
 
 Add the following line to your `Package.swift` file:
 ```swift
-.package(url: "https://github.com/anquii/BIP39.git", from: "0.1.0")
+.package(url: "https://github.com/anquii/BIP39.git", from: "1.0.0")
 ```
 ...or integrate with Xcode via `File -> Swift Packages -> Add Package Dependency...` using the URL of the repository.
 
