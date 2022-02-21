@@ -13,7 +13,7 @@ let package = Package(
             name: "BIP39",
             targets: ["BIP39"]
         )
-    ], 
+    ],
     targets: [
         .binaryTarget(
             name: "CryptoSwift",
