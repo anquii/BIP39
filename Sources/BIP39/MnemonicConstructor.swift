@@ -1,4 +1,5 @@
 import Foundation
+import CryptoSwift
 
 public protocol MnemonicConstructing {
     func mnemonic(entropy: Data, wordList: [String]) -> String
