@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CryptoSwiftWrapper",
+        "repositoryURL": "https://github.com/anquii/CryptoSwiftWrapper.git",
+        "state": {
+          "branch": null,
+          "revision": "c1acf3a50b28711b67eb8979eeb2d0832e6ee0a7",
+          "version": "1.4.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
