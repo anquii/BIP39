@@ -2,6 +2,7 @@ import Foundation
 import CryptoSwift
 
 public protocol SeedDerivating {
+    func seed(mnemonic: String) throws -> Data
     func seed(mnemonic: String, passphrase: String) throws -> Data
 }
 
@@ -16,7 +17,11 @@ public struct SeedDerivator {
 
 // MARK: - SeedDerivating
 extension SeedDerivator: SeedDerivating {
-    public func seed(mnemonic: String, passphrase: String = "") throws -> Data {
+    public func seed(mnemonic: String) throws -> Data {
+        try seed(mnemonic: mnemonic, passphrase: "")
+    }
+
+    public func seed(mnemonic: String, passphrase: String) throws -> Data {
         guard
             let password = mnemonic
                 .decomposedStringWithCompatibilityMapping
