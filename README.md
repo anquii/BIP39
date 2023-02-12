@@ -4,7 +4,7 @@
 [![Swift Package Manager compatible](https://img.shields.io/badge/SPM-compatible-orange)](#swift-package-manager)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/anquii/BIP39/blob/main/LICENSE)
 
-An implementation of [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) in Swift.
+An implementation of [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) in Swift. If needed, you can use [BIP39UserFlow](https://github.com/anquii/BIP39UserFlow) to launch a customizable user flow of `BIP39`.
 
 ## Platforms
 - macOS 10.15+
