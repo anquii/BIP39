@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/anquii/CryptoSwiftWrapper.git",
-            .upToNextMajor(from: "1.4.3")
+            .exact("1.4.3")
         )
     ],
     targets: [
