@@ -5,8 +5,6 @@ public protocol EntropyGenerating {
 }
 
 public struct EntropyGenerator {
-    private static let bitsInByte = 8
-
     public init() {}
 }
 
@@ -14,13 +12,10 @@ public struct EntropyGenerator {
 extension EntropyGenerator: EntropyGenerating {
     public func entropy(security: EntropySecurity) throws -> Data {
         let entropyLength = Int(entropySecurity: security)
-        var bytes = [UInt8](repeating: 0, count: entropyLength / Self.bitsInByte)
-
-        let status = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
-        if status == errSecSuccess {
-            return Data(bytes)
-        } else {
+        var bytes = [UInt8](repeating: 0, count: entropyLength / 8)
+        guard SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes) == errSecSuccess else {
             throw EntropyGeneratorError.invalidEntropy
         }
+        return Data(bytes)
     }
 }

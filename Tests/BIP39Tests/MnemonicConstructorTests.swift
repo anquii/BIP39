@@ -1,6 +1,6 @@
 import XCTest
 import CryptoSwift
-@testable import BIP39
+import BIP39
 
 final class MnemonicConstructorTests: XCTestCase {
     private let entropyGenerator = EntropyGenerator()
@@ -47,7 +47,6 @@ final class MnemonicConstructorTests: XCTestCase {
 
     func testGivenVectorEntropy_WhenGenerateMnemonic_ThenMnemonicEqualVectorMnemonic() throws {
         let sut = self.sut()
-
         for testVector in testVectors {
             let entropy = Data(hex: testVector.hexEncodedEntropy)
             let mnemonic = sut.mnemonic(entropy: entropy, wordList: wordListProvider.wordList)

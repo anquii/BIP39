@@ -1,6 +1,6 @@
 import XCTest
 import CryptoSwift
-@testable import BIP39
+import BIP39
 
 final class SeedDerivatorTests: XCTestCase {
     private var testVectors: [TestVector]!
@@ -25,7 +25,6 @@ final class SeedDerivatorTests: XCTestCase {
     func testGivenVectorMnemonic_AndValidPassphrase_WhenGenerateSeed_ThenEqualVectorSeed() throws {
         let sut = self.sut()
         let passphrase = "TREZOR"
-
         for testVector in testVectors {
             let seed = try sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
             XCTAssertEqual(seed, Data(hex: testVector.hexEncodedSeed))
@@ -35,7 +34,6 @@ final class SeedDerivatorTests: XCTestCase {
     func testGivenVectorMnemonic_AndInvalidPassphrase_WhenGenerateSeed_ThenNotEqualVectorSeed() throws {
         let sut = self.sut()
         let passphrase = "INVALID"
-
         for testVector in testVectors {
             let seed = try sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
             XCTAssertNotEqual(seed, Data(hex: testVector.hexEncodedSeed))

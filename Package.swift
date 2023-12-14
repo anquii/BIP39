@@ -9,25 +9,13 @@ let package = Package(
         .iOS(.v13)
     ],
     products: [
-        .library(
-            name: "BIP39",
-            targets: ["BIP39"]
-        )
+        .library(name: "BIP39", targets: ["BIP39"])
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/anquii/CryptoSwiftWrapper.git",
-            .exact("1.4.3")
-        )
+        .package(url: "https://github.com/anquii/CryptoSwiftWrapper.git", .exact("1.4.3"))
     ],
     targets: [
-        .target(
-            name: "BIP39",
-            dependencies: ["CryptoSwiftWrapper"]
-        ),
-        .testTarget(
-            name: "BIP39Tests",
-            dependencies: ["BIP39"]
-        )
+        .target(name: "BIP39", dependencies: ["CryptoSwiftWrapper"]),
+        .testTarget(name: "BIP39Tests", dependencies: ["BIP39"])
     ]
 )

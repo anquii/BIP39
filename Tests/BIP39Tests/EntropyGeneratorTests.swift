@@ -1,5 +1,5 @@
 import XCTest
-@testable import BIP39
+import BIP39
 
 final class EntropyGeneratorTests: XCTestCase {
     private func sut() -> EntropyGenerator {
