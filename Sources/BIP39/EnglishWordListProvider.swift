@@ -1,9 +1,8 @@
-public struct EnglishWordListProvider {
-    public init() {}
+public protocol WordListProviding {
+    var wordList: [String] { get }
 }
 
-// MARK: - WordListProviding
-extension EnglishWordListProvider: WordListProviding {
+public struct EnglishWordListProvider: WordListProviding {
     public var wordList: [String] {
         [
             "abandon",
@@ -2056,4 +2055,5 @@ extension EnglishWordListProvider: WordListProviding {
             "zoo"
         ]
     }
+    public init() {}
 }

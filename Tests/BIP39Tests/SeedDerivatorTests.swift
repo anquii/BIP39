@@ -1,5 +1,6 @@
 import XCTest
-import CryptoSwift
+import Foundation
+import BinaryExtensions
 import BIP39
 
 final class SeedDerivatorTests: XCTestCase {
@@ -17,26 +18,26 @@ final class SeedDerivatorTests: XCTestCase {
         XCTAssertEqual(testVectors.count, 24)
     }
 
-    func testWhenGenerateSeed_AndCountBytes_ThenEqual64() throws {
-        let seed = try sut().seed(mnemonic: "")
+    func testWhenGenerateSeed_AndCountBytes_ThenEqual64() {
+        let seed = sut().seed(mnemonic: "")
         XCTAssertEqual(seed.count, 64)
     }
 
-    func testGivenVectorMnemonic_AndValidPassphrase_WhenGenerateSeed_ThenEqualVectorSeed() throws {
-        let sut = self.sut()
+    func testGivenVectorMnemonic_AndValidPassphrase_WhenGenerateSeed_ThenEqualVectorSeed() {
+        let sut = sut()
         let passphrase = "TREZOR"
         for testVector in testVectors {
-            let seed = try sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
-            XCTAssertEqual(seed, Data(hex: testVector.hexEncodedSeed))
+            let seed = sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
+            XCTAssertEqual(seed, Data(hexEncodedString: testVector.hexEncodedSeed, stripLeadingZeroes: false))
         }
     }
 
-    func testGivenVectorMnemonic_AndInvalidPassphrase_WhenGenerateSeed_ThenNotEqualVectorSeed() throws {
-        let sut = self.sut()
+    func testGivenVectorMnemonic_AndInvalidPassphrase_WhenGenerateSeed_ThenNotEqualVectorSeed() {
+        let sut = sut()
         let passphrase = "INVALID"
         for testVector in testVectors {
-            let seed = try sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
-            XCTAssertNotEqual(seed, Data(hex: testVector.hexEncodedSeed))
+            let seed = sut.seed(mnemonic: testVector.mnemonic, passphrase: passphrase)
+            XCTAssertNotEqual(seed, Data(hexEncodedString: testVector.hexEncodedSeed, stripLeadingZeroes: false))
         }
     }
 }

@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 
 import PackageDescription
 
@@ -12,10 +12,10 @@ let package = Package(
         .library(name: "BIP39", targets: ["BIP39"])
     ],
     dependencies: [
-        .package(url: "https://github.com/anquii/CryptoSwiftWrapper.git", .exact("1.4.3"))
+        .package(url: "https://github.com/anquii/BinaryExtensions.git", exact: "0.1.1"),
     ],
     targets: [
-        .target(name: "BIP39", dependencies: ["CryptoSwiftWrapper"]),
-        .testTarget(name: "BIP39Tests", dependencies: ["BIP39"])
+        .target(name: "BIP39"),
+        .testTarget(name: "BIP39Tests", dependencies: ["BIP39", "BinaryExtensions"])
     ]
 )

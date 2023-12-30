@@ -1,33 +1,33 @@
 import Foundation
-import CryptoSwift
+import CommonCrypto
 
 public protocol SeedDerivating {
-    func seed(mnemonic: String) throws -> Data
-    func seed(mnemonic: String, passphrase: String) throws -> Data
+    func seed(mnemonic: String) -> Data
+    func seed(mnemonic: String, passphrase: String) -> Data
 }
 
-public struct SeedDerivator {
+public struct SeedDerivator: SeedDerivating {
+    public func seed(mnemonic: String) -> Data {
+        seed(mnemonic: mnemonic, passphrase: "")
+    }
+    public func seed(mnemonic: String, passphrase: String) -> Data {
+        let password = mnemonic.decomposedStringWithCompatibilityMapping.data(using: .utf8)!.map(CChar.init)
+        let salt = ("mnemonic" + passphrase).decomposedStringWithCompatibilityMapping.data(using: .utf8)!.map { $0 }
+        var bytes = [UInt8](repeating: 0, count: 64)
+        guard CCKeyDerivationPBKDF(
+            CCPBKDFAlgorithm(kCCPBKDF2),
+            password,
+            password.count,
+            salt,
+            salt.count,
+            CCPBKDFAlgorithm(kCCPRFHmacAlgSHA512),
+            2048,
+            &bytes,
+            bytes.count
+        ) == kCCSuccess else {
+            preconditionFailure()
+        }
+        return Data(bytes)
+    }
     public init() {}
-}
-
-// MARK: - SeedDerivating
-extension SeedDerivator: SeedDerivating {
-    public func seed(mnemonic: String) throws -> Data {
-        try seed(mnemonic: mnemonic, passphrase: "")
-    }
-
-    public func seed(mnemonic: String, passphrase: String) throws -> Data {
-        guard
-            let password = mnemonic.decomposedStringWithCompatibilityMapping.data(using: .utf8)?.bytes,
-            let salt = ("mnemonic" + passphrase).decomposedStringWithCompatibilityMapping.data(using: .utf8)?.bytes
-        else {
-            throw SeedDerivatorError.invalidInput
-        }
-        do {
-            let keyDerivation = try PKCS5.PBKDF2(password: password, salt: salt, iterations: 2048, keyLength: 64, variant: .sha2(.sha512))
-            return Data(try keyDerivation.calculate())
-        } catch let error as PKCS5.PBKDF2.Error {
-            throw SeedDerivatorError(error)
-        }
-    }
 }

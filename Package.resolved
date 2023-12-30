@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CryptoSwiftWrapper",
-        "repositoryURL": "https://github.com/anquii/CryptoSwiftWrapper.git",
-        "state": {
-          "branch": null,
-          "revision": "0d57e806de368b5d2364fabb7c789b48661ec90c",
-          "version": "1.4.3"
-        }
+  "pins" : [
+    {
+      "identity" : "binaryextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/anquii/BinaryExtensions.git",
+      "state" : {
+        "revision" : "ab9c034ab6d6a578fa0e574ef8c1b8d117b8bfc9",
+        "version" : "0.1.1"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }

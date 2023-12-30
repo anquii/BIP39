@@ -26,14 +26,14 @@ Add the following line to your `Package.swift` file:
 import BIP39
 
 let entropyGenerator: EntropyGenerating = EntropyGenerator()
-let entropy = try entropyGenerator.entropy(security: .strongest)
+let entropy = entropyGenerator.entropy(security: .strongest)
 let wordListProvider: WordListProviding = EnglishWordListProvider()
 
 let mnemonicConstructor: MnemonicConstructing = MnemonicConstructor()
 let mnemonic = mnemonicConstructor.mnemonic(entropy: entropy, wordList: wordListProvider.wordList)
 
 let seedDerivator: SeedDerivating = SeedDerivator()
-let seed = try seedDerivator.seed(mnemonic: mnemonic, passphrase: "")
+let seed = seedDerivator.seed(mnemonic: mnemonic, passphrase: "")
 ```
 
 ## License
@@ -42,7 +42,7 @@ let seed = try seedDerivator.seed(mnemonic: mnemonic, passphrase: "")
 
 ## Acknowledgments
 
-In developing `BIP39`, [KevinVitale](https://github.com/KevinVitale)'s [WalletKit](https://github.com/KevinVitale/WalletKit) has been used as a reference implementation. In addition, `BIP39` depends on [krzyzanowskim](https://github.com/krzyzanowskim)'s [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift) for crypto operations.
+In developing `BIP39`, [KevinVitale](https://github.com/KevinVitale)'s [WalletKit](https://github.com/KevinVitale/WalletKit) has been used as a reference implementation.
 
 ## Donations
 
